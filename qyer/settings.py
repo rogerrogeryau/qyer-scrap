@@ -19,7 +19,7 @@ NEWSPIDER_MODULE = 'qyer.spiders'
 #USER_AGENT = 'qyer (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -27,21 +27,37 @@ ROBOTSTXT_OBEY = True
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 1
+#DOWNLOAD_DELAY = 0.8
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
 
 
 #crawlera
-DOWNLOADER_MIDDLEWARES = {'scrapy_crawlera.CrawleraMiddleware': 300}
+DOWNLOADER_MIDDLEWARES = {
+	'scrapy_crawlera.CrawleraMiddleware': 610,
+	#scrapy-splash
+	'scrapy_splash.SplashCookiesMiddleware': 723,
+	'scrapy_splash.SplashMiddleware': 725,
+	'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,
+    }
+
 CRAWLERA_ENABLED = True
 CRAWLERA_APIKEY = '7d7b9060a4b94dec961e87549db3d50a'
+
 
 CONCURRENT_REQUESTS = 32
 CONCURRENT_REQUESTS_PER_DOMAIN = 32
 AUTOTHROTTLE_ENABLED = False
 DOWNLOAD_TIMEOUT = 600
+CRAWLERA_PRESERVE_DELAY = True
+
+
+
+
+
+
+
 
 # Disable cookies (enabled by default)
 #COOKIES_ENABLED = False
@@ -99,3 +115,31 @@ DOWNLOAD_TIMEOUT = 600
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+###############################################################################
+#Splash configuration added on 13-7-2018
+# 渲染服务的url
+SPLASH_URL = 'http://192.168.99.100:8050'
+
+
+# 去重过滤器
+DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'
+
+# 使用Splash的Http缓存
+HTTPCACHE_STORAGE = 'scrapy_splash.SplashAwareFSCacheStorage'
+
+
+SPIDER_MIDDLEWARES = {
+    'scrapy_splash.SplashDeduplicateArgsMiddleware': 100,
+}
+
+
+
+
+
+# 请求头
+DEFAULT_REQUEST_HEADERS = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.89 Safari/537.36',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+}
+
