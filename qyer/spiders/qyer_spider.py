@@ -11,14 +11,10 @@ class QyerSpiderSpider(scrapy.Spider):
 	# }
 	name = 'qyer-spider'
 	allowed_domains = ['plan.qyer.com']
-	start_urls = ["http://plan.qyer.com/search_0_0_11_0_0_0_50/?cityid=11186"]
+	start_urls = ["http://plan.qyer.com/search_0_0_11_0_0_0_0/?cityid=11186"]
 	
 
 
-	# def start_requests(self):
-	# 	url =  'http://plan.qyer.com/search_0_0_11_0_0_0_/?cityid=11186'
-	# 	yield SplashRequest(url=url, callback = self.parse, args = {'wait':1}, endpoint='render.html')
-	
 
 	def parse(self, response):
 		if response.xpath('//*[@class="notext fontYaHei"]/text()').extract_first() is None:
