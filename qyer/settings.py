@@ -119,19 +119,19 @@ CRAWLERA_PRESERVE_DELAY = True
 ###############################################################################
 #Splash configuration added on 13-7-2018
 # 渲染服务的url
-SPLASH_URL = 'http://192.168.99.100:8050'
+#SPLASH_URL = 'http://192.168.99.100:8050'
 
 
 # 去重过滤器
-DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'
+#DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'
 
 # 使用Splash的Http缓存
-HTTPCACHE_STORAGE = 'scrapy_splash.SplashAwareFSCacheStorage'
+#HTTPCACHE_STORAGE = 'scrapy_splash.SplashAwareFSCacheStorage'
 
 
-SPIDER_MIDDLEWARES = {
-    'scrapy_splash.SplashDeduplicateArgsMiddleware': 100,
-}
+# SPIDER_MIDDLEWARES = {
+#     'scrapy_splash.SplashDeduplicateArgsMiddleware': 100,
+# }
 
 
 
